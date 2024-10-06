@@ -66,9 +66,11 @@ export const Navbar = () => {
 
         {!isSearchBarActive && (
           <div className="w-1/3 flex justify-end gap-2 items-center content-center">
-            <Button variant={"rounded"} className="gap-2 bg-orange-600 md:bg-gray-700">
+
+            <Button variant={"rounded"} className="gap-2 bg-orange-600 md:bg-gray-700 hidden md:flex">
               <QrCode className="hidden md:block" />
-              Baixar App
+              <p>Baixar App </p>
+
             </Button>
 
             {!isSearchBarActive && (
@@ -83,12 +85,14 @@ export const Navbar = () => {
               </Button>
             ) : (
               userInfo.user ? (
-                <div className="hidden md:flex h-full items-center gap-2">
-                  <Button variant={"rounded"} className="gap-2 bg-orange-600 md:bg-gray-700">
-                    <PlusIcon className="hidden md:block"></PlusIcon>
-                    Criar post
-                  </Button>
-                  <UserButton></UserButton>
+                <div>
+                  <div className="hidden md:flex h-full items-center gap-2">
+                    <Button variant={"rounded"} className="gap-2 bg-orange-600 md:bg-gray-700">
+                      <PlusIcon className="hidden md:block"></PlusIcon>
+                      Criar post
+                    </Button>
+                    <UserButton></UserButton>
+                  </div>
                 </div>
 
               ) : (
