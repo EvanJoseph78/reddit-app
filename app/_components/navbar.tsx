@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowLeft, Ellipsis, MenuIcon, QrCode, SearchIcon, Sidebar } from "lucide-react";
+import { ArrowLeft, Ellipsis, MenuIcon, PlusIcon, QrCode, SearchIcon, Sidebar } from "lucide-react";
 import { SearchBar } from "./search-bar";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -83,7 +83,11 @@ export const Navbar = () => {
               </Button>
             ) : (
               userInfo.user ? (
-                <div className="hidden md:block">
+                <div className="hidden md:flex h-full items-center gap-2">
+                  <Button variant={"rounded"} className="gap-2 bg-orange-600 md:bg-gray-700">
+                    <PlusIcon className="hidden md:block"></PlusIcon>
+                    Criar post
+                  </Button>
                   <UserButton></UserButton>
                 </div>
 
