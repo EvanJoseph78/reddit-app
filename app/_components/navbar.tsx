@@ -9,6 +9,7 @@ import SideBar from "./sidebar";
 import { useRouter } from "next/dist/client/components/navigation";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { Spinner } from "@/components/spinner";
+import { Dropdown } from "@/components/droppdown";
 
 export const Navbar = () => {
 
@@ -82,9 +83,9 @@ export const Navbar = () => {
               </Button>
             ) : (
               userInfo.user ? (
-                <>
+                <div className="hidden md:block">
                   <UserButton></UserButton>
-                </>
+                </div>
 
               ) : (
                 <>
@@ -94,11 +95,11 @@ export const Navbar = () => {
                 </>
               )
             )}
+            <Dropdown></Dropdown>
 
-
-            <Button variant={"rounded"} className="gap-2 hover:bg-gray-700 p-2">
-              <Ellipsis />
-            </Button>
+            {/* <Button variant={"rounded"} className="gap-2 hover:bg-gray-700 p-2"> */}
+            {/*   <Ellipsis /> */}
+            {/* </Button> */}
 
           </div>
         )}
