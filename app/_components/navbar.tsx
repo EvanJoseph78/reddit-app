@@ -10,6 +10,7 @@ import { useRouter } from "next/dist/client/components/navigation";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { Spinner } from "@/components/spinner";
 import { Dropdown } from "@/components/droppdown";
+import { CreatePostButton } from "./create-post";
 
 export const Navbar = () => {
 
@@ -85,16 +86,7 @@ export const Navbar = () => {
               </Button>
             ) : (
               userInfo.user ? (
-                <div>
-                  <div className="hidden md:flex h-full items-center gap-2">
-                    <Button variant={"rounded"} className="gap-2 bg-orange-600 md:bg-gray-700">
-                      <PlusIcon className="hidden md:block"></PlusIcon>
-                      Criar post
-                    </Button>
-                    <UserButton></UserButton>
-                  </div>
-                </div>
-
+                <CreatePostButton></CreatePostButton>
               ) : (
                 <>
                   <Button variant={"rounded"} className="gap-2 bg-orange-600 hidden md:block" onClick={() => { router.push("/sign-in") }}>
