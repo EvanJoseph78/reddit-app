@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { MainCardPost } from "./_components/main-card-post";
-import { Post } from "@prisma/client";
 import { fetchPosts } from "@/services/api";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Card } from "@/components/ui/card";
+import { PostInfo } from "@/lib/type";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
 
-  const [posts, setPosts] = useState<Post[]>()
+  const [posts, setPosts] = useState<PostInfo[]>()
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
@@ -24,6 +23,9 @@ export default function Home() {
 
   return (
     <div className="space-y-4 ">
+
+      <Button onClick={() => { console.log(posts) }}>Evan</Button>
+
       {isLoading ? (
         <>
           <MainCardPost.skeleton></MainCardPost.skeleton>
@@ -34,7 +36,7 @@ export default function Home() {
         posts?.map((post) => (
           <MainCardPost
             key={post.id}
-            userName=""
+            userName={post.username}
             postTitle={post.title}
             votes={0}
             comments={0}

@@ -3,6 +3,7 @@ import { EmailAddress } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
 // Função para lidar com requisições POST
+// Cria um post e adiciona o usuário ao banco caso ainda não tenha sido adicionado
 export async function POST(request: NextRequest) {
   try {
     const { userClerkId, username, email, title, body, imageUrl } = await request.json(); // Obtém o userClerkId do corpo da requisição
@@ -29,7 +30,8 @@ export async function POST(request: NextRequest) {
       data: {
         title: title,
         body: body,
-        imageUrl: imageUrl
+        imageUrl: imageUrl,
+        userId: user.id
       }
     })
 
