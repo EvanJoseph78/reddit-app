@@ -13,7 +13,8 @@ export default function Home() {
 
   useEffect(() => {
     fetchPosts().then((data) => {
-      setPosts(data)
+      const sortedData = data.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      setPosts(sortedData)
       setIsLoading(false)
     }).catch((error) => {
       console.error('Erro ao buscar cursos:', error);
@@ -23,8 +24,6 @@ export default function Home() {
 
   return (
     <div className="space-y-4 ">
-
-      <Button onClick={() => { console.log(posts) }}>Evan</Button>
 
       {isLoading ? (
         <>

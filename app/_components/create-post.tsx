@@ -19,7 +19,11 @@ import { createPost } from "@/services/api"
 import { useUser } from "@clerk/nextjs"
 import { TabsContent } from "@radix-ui/react-tabs"
 import { PlusIcon } from "lucide-react"
+import { useRouter } from "next/navigation"
+
+
 import { useState } from "react"
+import toast from "react-hot-toast"
 
 export function CreatePostButton() {
 
@@ -30,6 +34,8 @@ export function CreatePostButton() {
 
   const { user } = useUser();
 
+  const router = useRouter();
+
   const fetchCreatePost = async (title: string, body: string, imageUrl: string) => {
     try {
       // Chama a função createPost com os parâmetros userClerkId, username e email
@@ -38,10 +44,27 @@ export function CreatePostButton() {
         const username = user.username || "username";
         const useremail = user.primaryEmailAddress?.emailAddress || "user@email.com";
         const post = await createPost(userClerkId, username, useremail, title, body, imageUrl);
+
+        setUrlImg("");
+
+
+        toast.success("Post criado com sucesso!");
+
+        setTimeout(() => {
+          router.push("/loading");  // Redireciona para a rota "/home" após o atraso
+          setTimeout(() => {
+            router.push("/");  // Redireciona para a rota "/home" após o atraso
+          }, 500);
+
+        }, 200);
+
+
       }
     } catch (error) {
       // Tratamento de erro no caso de falha na criação do post
       console.error("Error while creating post:", error);
+
+      toast.error("Erro ao criar post");
     }
   }
 
